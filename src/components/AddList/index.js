@@ -6,13 +6,13 @@ import closeSvg from './../../assets/img/close.svg'
 
 
 const AddListButton = ({colors}) => {
-    const [visiblePopup, setVisiblePopup] = useState(false);
+    const [visibleContainer, setVisibleContainer] = useState(false);
     const [selectedColor, selectColor] = useState(colors[0].id);
-    console.log(selectedColor)
+
     return (
         <div className="add-list">
             <List
-                onClick={() => setVisiblePopup(true)}
+                onClick={() => setVisibleContainer(true)}
                 items={[
                     {
                         className: 'list__add-button',
@@ -44,10 +44,10 @@ const AddListButton = ({colors}) => {
                     }
                 ]}
             />
-            {visiblePopup && (
+            {visibleContainer && (
                 <div className="add-list__container">
                     <img
-                        onClick={() => setVisiblePopup(false)}
+                        onClick={() => setVisibleContainer(false)}
                         src={closeSvg}
                         alt="Close button"
                         className="add-list__container-close-btn"

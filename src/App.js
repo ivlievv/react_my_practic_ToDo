@@ -20,26 +20,14 @@ function App() {
                     ]}
                 />
                 <List
-                    items={[
-                        {
-                            color: 'green',
-                            name: 'Product',
-                        },
-                        {
-                            color: 'blue',
-                            name: 'Frontend',
-                        },
-                        {
-                            color: 'black',
-                            name: 'Backend',
+                    items={DB.lists.map(item => {
+                        item.color = DB.colors.filter(
+                            color => color.id === item.colorId
+                        )[0].name;
+                        console.log(item)
+                        return item;
 
-                        },
-                        {
-                            color: 'red',
-                            name: 'Film',
-                        },
-
-                    ]}
+                    })}
                     isRemovable
                 />
                 <AddList colors={DB.colors}/>
