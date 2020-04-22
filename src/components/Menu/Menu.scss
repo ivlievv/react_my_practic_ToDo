@@ -1,5 +1,13 @@
 .list{
   margin-bottom: 30px;
+
+  &__add-task{
+   opacity: 0.4;
+
+    &:hover{
+      opacity: 1;
+    }
+  }
   li {
     display: flex;
     align-items: center;
@@ -14,6 +22,11 @@
       padding: 10px 12px;
     }
 
+    .badge {
+      position: relative;
+      left: 5px;
+    }
+
 
     i {
       display: inline-flex;
@@ -23,29 +36,5 @@
       }
     }
 
-    .badge {
-      width: 10px;
-      height: 10px;
-      border-radius: 100%;
-      position: relative;
-      left: 5px;
-
-      &--green{
-        background-color: green;
-        opacity: 0.8;
-      }
-      &--blue{
-        background-color: blue;
-        opacity: 0.8;
-      }
-      &--black{
-        background-color: black;
-        opacity: 0.8;
-      }
-      &--red{
-        background-color: red;
-        opacity: 0.8;
-      }
-    }
   }
 }
