@@ -5,6 +5,7 @@ import listSvg from "./assets/img/list.svg";
 import add from './assets/img/add.svg'
 import AddList from "./components/AddList";
 import DB from './assets/db';
+import Tasks from "./components/Tasks";
 
 function App() {
     const [lists, setLists] = useState(DB.lists.map(item => {
@@ -41,6 +42,7 @@ function App() {
                 <AddList onAdd={onAddList} colors={DB.colors}/>
             </div>
             <div className="todo__tasks">
+                <Tasks/>
             </div>
         </div>
     );
