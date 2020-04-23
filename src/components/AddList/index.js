@@ -5,9 +5,27 @@ import Badge from "./../Badge";
 import closeSvg from './../../assets/img/close.svg'
 
 
-const AddListButton = ({colors}) => {
+const AddListButton = ({colors, onAdd}) => {
     const [visibleContainer, setVisibleContainer] = useState(false);
     const [selectedColor, selectColor] = useState(colors[0].id);
+    const [inputValue, setInputValue] = useState('')
+
+
+    const onClose = () => {
+        setVisibleContainer(false)
+        setInputValue('')
+        selectColor(colors[0].id)
+    }
+
+    const addList = () => {
+        if (!inputValue) {
+            alert("Enter a list name");
+            return;
+        }
+        const color = colors.filter(color => color.id === selectedColor)[0].name;
+        onAdd({id: Math.random(), name: inputValue, color: color});
+        onClose();
+    }
 
     return (
         <div className="add-list">
@@ -47,12 +65,18 @@ const AddListButton = ({colors}) => {
             {visibleContainer && (
                 <div className="add-list__container">
                     <img
-                        onClick={() => setVisibleContainer(false)}
+                        onClick={onClose}
                         src={closeSvg}
                         alt="Close button"
                         className="add-list__container-close-btn"
                     />
-                    <input className="field" type="text" placeholder="Название списка" />
+                    <input value={inputValue}
+                           onChange={e => {
+                               setInputValue(e.target.value)
+                           }}
+                           className="field"
+                           type="text"
+                           placeholder="List name"/>
                     <div className="add-list__container-colors">
                         {colors.map(color => (
                             <Badge
@@ -63,13 +87,12 @@ const AddListButton = ({colors}) => {
                             />
                         ))}
                     </div>
-                    <button className="button">Add Task</button>
+                    <button onClick={addList} className="button">Add Task</button>
                 </div>
             )}
         </div>
     );
 };
-
 
 
 export default AddListButton;
