@@ -31,6 +31,8 @@
   color: white;
   border: 0;
   padding: 5px 20px;
+  font-size: 14px;
+  font-family: sans-serif;
 
   &:hover{
     background: #14c36c;
@@ -39,18 +41,36 @@
   &:active{
     background: #14b45e;
   }
+
+  &:disabled {
+    background: #d8d8d8;
+  }
+
+  &--grey{
+    background: #f4f6f8;
+    color: #444;
+
+    &:hover{
+      background: darken(#f4f6f8, 4%);
+    }
+
+    &:active{
+      background: darken(#f4f6f8, 8%);
+    }
+  }
 }
 
 .field{
   background: #ffff;
-  border: 1px solid #EFEFEF;
+  border: 1px solid #d6d6d6;
   box-sizing: border-box;
   border-radius: 4px;
   padding: 8px 12px;
   width: 100%;
+  font-size: 14px;
 
   &:focus{
-    border-color: #dedede;
+    border-color: #c4c4c4;
   }
 
 }

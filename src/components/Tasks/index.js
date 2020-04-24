@@ -1,16 +1,24 @@
 import React from 'react';
 import axios from 'axios';
 import editSvg from './../../assets/img/edit.svg';
+import addSvg from './../../assets/img/add.svg';
 import './Tasks.scss';
+import AddTaskForm from "./AddTaskForm";
 
-const Tasks = ({list, onEditTitle}) => {
-
+const Tasks = ({ list, onEditTitle, onAddTask }) => {
     const editTitle = () => {
-        const newTitle = window.prompt('Name List', list.name)
-        if (newTitle){
-            onEditTitle(list.id, newTitle)
+        const newTitle = window.prompt('List name', list.name);
+        if (newTitle) {
+            onEditTitle(list.id, newTitle);
+            axios
+                .patch('http://localhost:3001/lists/' + list.id, {
+                    name: newTitle
+                })
+                .catch(() => {
+                    alert('Field to update list name');
+                });
         }
-    }
+    };
 
     return (
         <div className="tasks">
@@ -46,6 +54,10 @@ const Tasks = ({list, onEditTitle}) => {
                         <input readOnly value={task.text} />
                     </div>
                     ))}
+                    <AddTaskForm
+                        list={list}
+                        onAddTask={onAddTask}
+                    />
             </div>
         </div>
     );
