@@ -27,8 +27,8 @@ const AddTaskForm = ({ list, onAddTask }) => {
                 onAddTask(list.id, data);
                 toggleFormVisible();
             })
-            .catch(() => {
-                alert('Ошибка при добавлении задачи!');
+            .catch(e => {
+                alert('Error adding task!');
             })
             .finally(() => {
                 setIsLoading(false);
@@ -48,7 +48,7 @@ const AddTaskForm = ({ list, onAddTask }) => {
                         value={inputValue}
                         className="field"
                         type="text"
-                        placeholder="Текст задачи"
+                        placeholder="Text task"
                         onChange={e => setInputValue(e.target.value)}
                     />
                     <button disabled={isLoading} onClick={addTask} className="button">
